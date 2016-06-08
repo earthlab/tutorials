@@ -1,5 +1,0 @@
-# ignore downloaded source files, .tif output, and .h5 data files
-*.py
-*.tif
-*.h5
-
