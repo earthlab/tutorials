@@ -34,9 +34,9 @@ It’s obviously important that JANUS is not open to the general public who may 
 
 5) Ensure that notifications are enabled for the Duo Mobile application
 
-5) Come into the ARC Building on East Campus to see Joel (6th floor, Room 679) with your CU Boulder photo ID card
+6) Either talk to Max, Tim, or Shelley or come into the ARCE Building on East Campus to see Joel (6th floor, Room 679) with your CU Boulder photo ID card
 
-6) Joel will then issue an email/text message/phone call to verify and finalize the two-step authentication setup process
+7) RC will then issue an email/text message/phone call to verify and finalize the two-step authentication setup process
 
 ### Logging into JANUS
 
@@ -95,7 +95,7 @@ When you login to JANUS you will automatically be in the login workspace/directo
 Therefore it's important to direct any job output or store files in your personal projects directory. Each user has access to 256GB in this directory, **much** more room than the login directory. You're able to switch into your projects directory with the following command:
 
 ```sh
-$ cd /projects/username
+cd /projects/username
 # 'username' is your identikey username
 ```
 
@@ -106,21 +106,21 @@ As previously stated, this is the location where you should direct any job outpu
 While using JANUS, we're going to need to load specific modules in order to accomodate and assist in running any programs that we wish to run on JANUS. Below are a list of commands that you can enter in order to view, import, or get rid of modules while using JANUS.
 
 ```sh
-$ ml                        #View modules you currently have loaded in your session
-$ ml avail                  #View all available modules currently on JANUS
-$ ml intel                  #Load the intel compiler, use 'ml gcc' for the gcc compiler
-$ ml python                 #Load the python module
-$ ml EARTHLAB_PYTHON_PKGS   #Load all of the python packages necessary for EarthLab
-$ ml unload module_name     #Unload the module called 'module_name'
-$ ml purge                  #Unload all currently loaded modules
+ml                        #View modules you currently have loaded in your session
+ml avail                  #View all available modules currently on JANUS
+ml intel                  #Load the intel compiler, use 'ml gcc' for the gcc compiler
+ml python                 #Load the python module
+ml EARTHLAB_PYTHON_PKGS   #Load all of the python packages necessary for EarthLab
+ml unload module_name     #Unload the module called 'module_name'
+ml purge                  #Unload all currently loaded modules
 ```
 
 While you are certainly able to load any of the modules listed after the 'ml avail' command, you will for the most part just be using the following commands for any work that you need to do on JANUS:
 
 ```sh
-$ ml intel
-$ ml python
-$ ml EARTHLAB_PYTHON_PKGS
+ml intel
+ml python
+ml EARTHLAB_PYTHON_PKGS
 ```
 
 ##### Submitting/Running Jobs on JANUS
@@ -128,7 +128,7 @@ $ ml EARTHLAB_PYTHON_PKGS
 JANUS uses a queueing system called 'Slurm' to manage available resources and to schedule jobs that use these resources. You should always use Slurm commands to submit both batch and interactive jobs and to monitor their progress during execution. Firstly, you'll need to load the slurm module.
 
 ```sh
-$ ml slurm
+ml slurm
 ```
 
 ___Batch Jobs___
@@ -136,25 +136,27 @@ ___Batch Jobs___
 Slurm is primarily a resource manager for batch jobs: a user writes a job script that slurm shcedules to run non-interactively when resources are available. Submissions of computational jobs to the slurm queue are done via the *sbatch* command. 
 
 ```sh
-$ sbatch job_script.sh
+sbatch job_script.sh
 ```
 
 You can provide additional requirements to JANUS such as the amount of nodes/memory/tasks/time to be used for your specific job. These can be included as command line arugments such as below or within the file you wish to run.
 
 ```sh
-$ sbatch --ntasks 16 job_script.sh
+sbatch --ntasks 16 job_script.sh
 ```
 
 Please note that you should only be using these additional command line arguments if you have a good idea as to the amount of resources necessary to run your job. Overestimating the amount of time or resources allocated to your job will be taking away time and resources from other jobs that are scheduled.
+
+An example of a sample batch script can be found [here](https://github.com/ResearchComputing/Final_Tutorials/blob/master/How_Use_Supercomputer/slurmSub.sh)
 
 ___Monitoring Job Progress___
 
 The *squeue* command can be used to inspect the current slurm job queue and a job's progress through it.
 
 ```sh
-$ squeue --user=$USER               #List all of your current jobs on the queue
-$ squeue --user=$USER --start       #Provide an estimate on when your jobs will start/what resources are expected
-$ sconrol show job $SLURM_JOB_ID    #More detailed information about a specific job on the queue
+squeue --user=$USER               #List all of your current jobs on the queue
+squeue --user=$USER --start       #Provide an estimate on when your jobs will start/what resources are expected
+sconrol show job $SLURM_JOB_ID    #More detailed information about a specific job on the queue
 ```
 
 Additional information regarding submitting jobs to JANUS such as job arrays, accounts, job mail, and memory limits can be found [here](https://www.rc.colorado.edu/support/user-guide/batch-queueing.html)
@@ -164,15 +166,15 @@ Additional information regarding submitting jobs to JANUS such as job arrays, ac
 1) *cd* into your projects directory and make a new sub-directory called 'test_job'
 
 ```sh
-$ cd /projects/username
-$ mkdir test_job
-$ cd test_job
+cd /projects/username
+mkdir test_job
+cd test_job
 ```
 
 2) Write the test_job script
 
 ```sh
-$ cat - >test_job.sh << EOF
+cat - >test_job.sh << EOF
 #!/bin/bash
 #SBATCH --job-name test_job
 #SBATCH --time 05:00
@@ -193,18 +195,18 @@ EOF
 3) Load slurm and submit the job
 
 ```sh
-$ ml slurm
-$ sbatch --qos janus-debug test_job.sh
+ml slurm
+sbatch --qos janus-debug test_job.sh
 ```
     
 4) Monitor the job execution
 
 ```sh
-$ squeue --user $USER
+squeue --user $USER
 # Information regarding your job will be printed
-$ squeue --user $USER --start
+squeue --user $USER --start
 # Print the estimated start time for the job
-$ tail -F test_job.out
+tail -F test_job.out
 # Print out the output of the job that we submitted
 ```
 
