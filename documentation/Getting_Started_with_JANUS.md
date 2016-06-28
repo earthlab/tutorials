@@ -13,19 +13,29 @@ It’s obviously important that JANUS is not open to the general public who may 
 ##### Getting an RC Account
 
 1) Open up a web browser and head to the [RC Account Creation Page](https://portals.rc.colorado.edu/account/request/)
+
 2) At the bottom of the screen, ensure 'University of Colorado - Boulder' is selected fom the dropdown box under 'Select your organization' and press 'Continue'
+
 3) Provide your CU Boulder identikey username and password
+
 4) Provide your proper University affiliation, enter 'EarthLab' for Organization/Department you represent, and ensure 'bash' is selected for 'Preferred login shell'
+
 5) Click 'Submit Request'
 
 ##### Getting a Duo Account
 
 1) Open up a web browser and head to the [Duo Signup Page](https://signup.duo.com/)
+
 2) Provide your first name, last name, CU Boulder email address, mobile phone number, enter 'EarthLab' as Company/Account Name, and selecter 'Just me' from the final dropdown box
+
 3) Check the Terms/Privacy Policy box and click 'Create My Account'
+
 4) Download the Duo Mobile application on your smartphone
+
 5) Ensure that notifications are enabled for the Duo Mobile application
+
 5) Come into the ARC Building on East Campus to see Joel (6th floor, Room 679) with your CU Boulder photo ID card
+
 6) Joel will then issue an email/text message/phone call to verify and finalize the two-step authentication setup process
 
 ### Logging into JANUS
@@ -35,26 +45,43 @@ Now that you properly have two-step authentication set up, you're ready to log i
 ##### Windows Users
 
 1) Open up a web browser and head to the [Putty Download Page](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) and click 'putty.exe' under 'For Windows on x86 Intel'
+
 2) Download, install, and open Putty
+
 3) Click 'Session' from the list on the left side of the screen
+
 4) Under 'Host Name (or IP address)' type 'login.rc.colorado.edu'
+
 5) Click 'Data' under 'Connection; from the list on the left side of the screen
+
 6) Under 'Login details' type your identikey username for 'Auto-login username'
+
 7) Click 'Session' from the list again
+
 8) Under 'Saved Sessions' type 'JANUS' and press 'Save'
+
 9) Click 'JANUS' and press 'Open' on the bottom-right of the screen
+
 10) A new window should pop up with the title 'login.rc.colorado.edu - PuTTY' with a prompt to enter your password
+
 11) Enter 'duo:password' where password is your identikey password (do not include the single quotation marks) and press 'Enter'
+
 12) You should receive a notification on your smartphone from Duo
+
 13) Open the notifcation/app and press the green 'Approve' button on the bottom of the screen
 
 ##### Mac/Linux Users
 
 1) Open up the command line on your system
+
 2) Type 'ssh login.colorado.edu' and press 'Enter'
+
 3) You should now be connected to JANUS and be prompted to enter your password
+
 4) Enter 'duo:password' where password is your identikey password (do not include the single quotation marks) and press 'Enter'
+
 5) You should receive a notification on your smartphone from Duo
+
 6) Open the notification/app and press the green 'Approve' button on the bottom of the screen
 
 ### Using JANUS
@@ -136,49 +163,49 @@ Additional information regarding submitting jobs to JANUS such as job arrays, ac
 
 1) *cd* into your projects directory and make a new sub-directory called 'test_job'
 
-    ```sh
-    $ cd /projects/username
-    $ mkdir test_job
-    $ cd test_job
-    ```
+```sh
+$ cd /projects/username
+$ mkdir test_job
+$ cd test_job
+```
 
 2) Write the test_job script
 
-    ```sh
-    $ cat - >test_job.sh << EOF
-    #!/bin/bash
-    #SBATCH --job-name test_job
-    #SBATCH --time 05:00
-    #SBATCH --nodes 1
-    #SBATCH --output test_job.out
-    
-    echo "The job has begun"
-    echo "Wait one minute..."
-    sleep 60
-    echo "Wait a second minute..."
-    sleep 60
-    echo "Wait a third minute..."
-    sleep 60
-    echo "Enough waiting: job completed."
-    EOF
-    ```
+```sh
+$ cat - >test_job.sh << EOF
+#!/bin/bash
+#SBATCH --job-name test_job
+#SBATCH --time 05:00
+#SBATCH --nodes 1
+#SBATCH --output test_job.out
+
+echo "The job has begun"
+echo "Wait one minute..."
+sleep 60
+echo "Wait a second minute..."
+sleep 60
+echo "Wait a third minute..."
+sleep 60
+echo "Enough waiting: job completed."
+EOF
+```
 
 3) Load slurm and submit the job
 
-    ```sh
-    $ ml slurm
-    $ sbatch --qos janus-debug test_job.sh
-    ```
+```sh
+$ ml slurm
+$ sbatch --qos janus-debug test_job.sh
+```
     
 4) Monitor the job execution
 
-    ```sh
-    $ squeue --user $USER
-    # Information regarding your job will be printed
-    $ squeue --user $USER --start
-    # Print the estimated start time for the job
-    $ tail -F test_job.out
-    # Print out the output of the job that we submitted
-    ```
+```sh
+$ squeue --user $USER
+# Information regarding your job will be printed
+$ squeue --user $USER --start
+# Print the estimated start time for the job
+$ tail -F test_job.out
+# Print out the output of the job that we submitted
+```
 
 Congrats! You just submitted your first job on the JANUS supercomputer. Please adhere to the guidelines listed in this document for further usage of JANUS.
