@@ -1,4 +1,4 @@
-# Getting Started with Janus
+# Getting started with Janus
 
 ## Background
 
