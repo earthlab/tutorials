@@ -78,7 +78,7 @@ Now that you properly have two-step authentication set up, you're ready to log i
 
 1) Open a terminal on your system
 
-2) Type 'ssh login.colorado.edu' and press 'Enter'
+2) Type `ssh -l $your_rc_username login.rc.colorado.edu` and press 'Enter' (don't include the dollar sign)
 
 3) You should now be connected to JANUS and be prompted to enter your password
 
@@ -98,7 +98,7 @@ A tutorial on bash can be found [here](http://cli.learncodethehardway.org/bash_c
 ### Workspaces
 
 When you login to JANUS you will automatically be in the login directory (folder).
-This is indicated by the [identikey_username@login ~]$ text on the command line.
+This is indicated by the [username@login ~]$ text on the command line.
 It is very important to note that this is **not** the place to store large files or large numbers of files.
 Each user on JANUS has a login/home directory that is limited to 2GB to prevent the use of the home directory as a target for job output.
 Every time you login to JANUS, a small file is created in order to ensure your login.
