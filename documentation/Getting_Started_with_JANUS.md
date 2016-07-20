@@ -6,15 +6,16 @@ What is a supercomputer and why is it necessary?
 A supercomputer is defined as a computer with a high-level computational capacity much greater in comparison to a general-purpose computer, hence the ‘super’ prefix.General-purpose computers can typically compute anywhere between 1-10 billion floating-point operations per second (FLOPS) whereas supercomputers can compute trillions or even quadrillions of FLOPS.
 In layman’s terms, this means that programs can run much quicker on a supercomputer due to the greater amount of FLOPS it can compute, this is especially useful for computation-heavy programs which may take hours or even days to run.
 
-EarthLab has access to CU Boulder’s Research Computing supercomputer, JANUS.
-The JANUS supercomputer is comprised of 1,368 compute nodes, each containing 12 cores, for a total of 16,416 available cores and can achieve 184 trillion FLOPS.
-As a member of EarthLab, you can run jobs and store files on JANUS.
-This document will walk you through the process of getting started on JANUS.
+EarthLab has access to CU Boulder’s Research Computing supercomputer, Janus.
+The Janus supercomputer is comprised of 1,368 compute nodes, each containing 12 cores, for a total of 16,416 available cores and can achieve 184 trillion FLOPS.
+As a member of EarthLab, you can run jobs and store files on Janus.
+This document will walk you through the process of getting started on Janus.
 
 ## Authentication
 
-JANUS is not open to the general public.
+Janus is not open to the general public.
 Users require authentication to log in.
+This is accomplished by setting up an account with CU Boulder's Research Computing (RC) group and downloading/installing a mobile phone application for authentication called Duo.
 
 ### Getting a Research Computing (RC) Account
 
@@ -42,9 +43,9 @@ Users require authentication to log in.
 
 6) Upon verifying your CU Boulder ID card, RC will then issue an email/text message/phone call to verify and finalize the two-step authentication setup process
 
-## Logging into JANUS
+## Logging into Janus
 
-Now that you properly have two-step authentication set up, you're ready to log into JANUS.
+Now that you properly have two-step authentication set up, you're ready to log into Janus.
 
 ### Windows Users
 
@@ -62,9 +63,9 @@ Now that you properly have two-step authentication set up, you're ready to log i
 
 7) Click 'Session' from the list again
 
-8) Under 'Saved Sessions' type 'JANUS' and press 'Save'
+8) Under 'Saved Sessions' type 'Janus' and press 'Save'
 
-9) Click 'JANUS' and press 'Open' on the bottom-right of the screen
+9) Click 'Janus' and press 'Open' on the bottom-right of the screen
 
 10) A new window should open with the title 'login.rc.colorado.edu - PuTTY' and a prompt to enter your password
 
@@ -88,24 +89,25 @@ Now that you properly have two-step authentication set up, you're ready to log i
 
 6) Open the notification/app and press the green 'Approve' button
 
-## Using JANUS
+## Using Janus
 
-You should now be logged into JANUS.
-Because there is no graphical user interface (GUI) all of your interactions with JANUS will be via the command line.
-The default command line used to communicate with JANUS is **bash**, this can be changed if need be.
+You should now be logged into a 'login node' on Janus.
+Because there is no graphical user interface (GUI) all of your interactions with Janus will be via the command line.
+The default command line used to communicate with Janus is **bash**, this can be changed if need be.
 A tutorial on bash can be found [here](http://cli.learncodethehardway.org/bash_cheat_sheet.pdf).
 
 ### Workspaces
 
-When you login to JANUS you will automatically be in the login directory (folder).
+When you login to Janus you will automatically be in the login directory (folder) on a login node.
 This is indicated by the [username@login ~]$ text on the command line.
-It is very important to note that this is **not** the place to store large files or large numbers of files.
-Each user on JANUS has a login/home directory that is limited to 2GB to prevent the use of the home directory as a target for job output.
-Every time you login to JANUS, a small file is created in order to ensure your login.
+It is very important to note that this is **not** the place to store large files, large numbers of files, or run intensive programs.
+Janus is comprised of multiple nodes such as computation nodes, high-memory (himem) nodes, visualization (viz) nodes, etc. These nodes are to be used for your needed jobs/processes, **not** the login nodes.
+Each user on Janus has a login/home directory that is limited to 2GB to prevent the use of the home directory as a target for job output.
+Every time you login to Janus, a small file is created in order to ensure your login.
 If you use up the 2GB with data this file will not be created and you won't be able to login!
 
-Therefore it's important to direct any job output or store files in your personal projects directory.
-Each user has access to 256GB in this directory, **much** more room than the login directory.
+Therefore it's important to direct any job output or store files in your personal projects directory and to use different nodes when submitting/running jobs.
+Each user has access to 256GB in this projects directory, **much** more room than the login directory.
 You can change into your projects directory with the `cd` command:
 
 ```sh
@@ -118,8 +120,8 @@ As previously stated, this is the location where you should direct any job outpu
 
 ### Modules
 
-While using JANUS, users can load modules to help run programs.
-Below are a list of commands that you can enter in order to view, import, or get rid of modules while using JANUS.
+While using nodes on Janus, users can load modules to help run programs.
+Below are a list of commands that you can enter in order to view, import, or get rid of modules while using Janus.
 
 ```sh
 ml                        #View modules you currently have loaded in your session
@@ -131,7 +133,7 @@ ml unload module_name     #Unload the module called 'module_name'
 ml purge                  #Unload all currently loaded modules
 ```
 
-While you can load any of the modules listed after the 'ml avail' command, the following commands may be sufficient for the majority of Earth Lab jobs that are Python based:
+While you can load any of the modules listed after the 'ml avail' command, the following commands may be sufficient for the majority of EarthLab jobs that are Python based:
 
 ```sh
 ml intel
@@ -139,10 +141,11 @@ ml python
 ml EARTHLAB_PYTHON_PKGS
 ```
 
-### Submitting Jobs on JANUS
+### Submitting Jobs on Janus
 
-JANUS uses a queueing system called [Slurm](http://slurm.schedmd.com/) to manage resources and schedule jobs.
+Janus uses a queueing system called [Slurm](http://slurm.schedmd.com/) to manage resources and schedule jobs.
 You should always use Slurm commands to submit jobs and to monitor job progress during execution.
+This will allow you to submit and run jobs on nodes that are not the login node.
 First, you'll need to load the slurm module.
 
 ```sh
@@ -158,7 +161,7 @@ Submissions of computational jobs to the slurm queue are done via the *sbatch* c
 sbatch job_script.sh
 ```
 
-You can provide additional arguments to JANUS such as the amount of nodes, memory, tasks, and/or time to be used for your specific job.
+You can provide additional arguments to Janus such as the amount of nodes, memory, tasks, and/or time to be used for your specific job.
 These can be included as command line arguments (shown below), or embedded within the file you wish to run ([examples here](https://www.rc.colorado.edu/support/user-guide/batch-queueing.html)).
 
 ```sh
@@ -181,7 +184,7 @@ squeue --user=$USER --start       #Provide an estimate on when your jobs will st
 scontrol show job $SLURM_JOB_ID    #More detailed information about a specific job on the queue
 ```
 
-Additional information regarding submitting jobs to JANUS such as job arrays, accounts, job mail, and memory limits can be found [here](https://www.rc.colorado.edu/support/user-guide/batch-queueing.html)
+Additional information regarding submitting jobs to Janus such as job arrays, accounts, job mail, and memory limits can be found [here](https://www.rc.colorado.edu/support/user-guide/batch-queueing.html)
 
 ### Running a Test Job
 
@@ -201,6 +204,7 @@ cat - >test_job.sh << EOF
 #SBATCH --job-name test_job
 #SBATCH --time 05:00
 #SBATCH --nodes 1
+#SBATCH --qos janus 
 #SBATCH --output test_job.out
 
 echo "The job has begun"
@@ -233,5 +237,5 @@ tail -F test_job.out
 ```
 
 Congratulations!
-You just submitted your first job on the JANUS supercomputer.
-Please adhere to the guidelines listed in this document for further usage of JANUS.
+You just submitted your first job on the Janus supercomputer.
+Please adhere to the guidelines listed in this document for further usage of Janus.
