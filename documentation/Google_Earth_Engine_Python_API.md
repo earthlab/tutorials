@@ -1,6 +1,10 @@
 # Introduction to Google Earth Engine's Python API
 
-In addition to the web-based IDE Google Earth Engine also provides a Python API that can be used on your local machine without the need to utilize a browser. While the capabilities of this API are much less compared to what can be accomplished through the Code Editor/IDE, you may still find it to be of use. This tutorial will go over how to setup the API on your machine as well as some basic Python scripts utilizing the API. It is important to note that the Python API does not support any kind of visual output; therefore, it is highly recommended that you use the Code Editor IDE.
+Author: Matt Oakley
+
+In addition to the web-based IDE Google Earth Engine also provides a Python API that can be used on your local machine without the need to utilize a browser, although the capabilities of this API are reduced compared to the Code Editor/IDE.
+This tutorial will go over how to setup the API on your machine as well as some basic Python scripts utilizing the API. 
+It is important to note that the Python API does not support any kind of visual output; therefore, it is highly recommended that you use the Code Editor IDE.
 
 ## Setup
 
@@ -26,11 +30,13 @@ In addition to the web-based IDE Google Earth Engine also provides a Python API 
     ```
     python -c "import ee; ee.Initialize()"
     ```
-    This will result in an error message due to the fact that Google still needs to verify your account with Earth Engine and it currently does not have the proper credentials. Therefore, run the below command.
+    This will result in an error message due to the fact that Google still needs to verify your account with Earth Engine and it currently does not have the proper credentials. 
+    Therefore, run:
     ```
     earthengine authenticate
     ```
-    This will open up your default web-browser (ensure that you're currently logged into your Google account) and provide you with a unique key to verify your account. Copy and paste the key into the terminal when prompted for the key.
+    This will open your default web-browser (ensure that you're currently logged into your Google account) and provide you with a unique key to verify your account. 
+    Copy and paste the key into the terminal when prompted for the key.
 7. Run python so that you're utilizing the Python Command Line Interface (CLI) and run the following commands to ensure that the Earth Engine Python API is properly installed
     ```
     python
@@ -42,7 +48,8 @@ In addition to the web-based IDE Google Earth Engine also provides a Python API 
     If you see metadata printed to the terminal and there are no errors then the Python API for Earth Engine is properly installed and you are ready to use it. If you were stuck or ran into errors not outline in this tutorial, a more in-depth tutorial can be found [here](https://developers.google.com/earth-engine/python_install)
     
 ## Examples
-**Downloading Data** - Running below script will print the path used to download the specified file:
+**Downloading Data** - Running below script will print the path used to download some elevation data from the NASA [Shuttle Radar Topography Mission](http://www2.jpl.nasa.gov/srtm/):
+
 ```
 import ee
 
