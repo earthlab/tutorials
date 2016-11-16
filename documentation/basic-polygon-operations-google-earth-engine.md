@@ -1,6 +1,17 @@
-# Calculating the Area of Polygons in Google Earth Engine
-
-Author: Matt Oakley
+---
+layout: single
+title: 'Calculating the area of polygons in Google Earth Engine'
+date: 2016-10-01
+authors: [Matt Oakley]
+category: [tutorials]
+excerpt: 'This tutorial demonstrates polygon creation, perimeter and area calculations, and visualization using the JavaScript interface to Google Earth Engine.'
+sidebar:
+  nav:
+author_profile: false
+comments: true
+lang: [javascript]
+lib:
+---
 
 As we've seen in previous tutorials covering the Google Earth Engine IDE and Python API, Earth Engine is an extremely powerful and fast way to analyze and visualize geospatial data. 
 This tutorial will cover creating a polygon on the map and computing/printing out to the console information such as area, perimeter, etc about the polygon.

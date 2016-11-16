@@ -1,4 +1,17 @@
-# Getting started with Janus
+---
+layout: single
+title: 'Getting started with the Janus supercomputer'
+date: 2016-08-01
+authors: [Matt Oakley, Max Joseph]
+category: [tutorials]
+excerpt: 'This tutorial explains how members of Earth Lab can gain access to Janus, the supercomputer at the University of Colorado Boulder. It also outlines the process for submitting jobs and navigating the command line.'
+sidebar:
+  nav:
+author_profile: false
+comments: true
+lang: 
+lib:
+---
 
 ## Background
 

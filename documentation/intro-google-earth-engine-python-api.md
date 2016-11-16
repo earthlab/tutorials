@@ -1,6 +1,17 @@
-# Introduction to Google Earth Engine's Python API
-
-Author: Matt Oakley
+---
+layout: single
+title: 'Introduction to the Google Earth Engine Python API'
+date: 2016-09-01
+authors: [Matt Oakley]
+category: [tutorials]
+excerpt: 'This tutorial outlines the process of installing the Google Earth Engine Python API client.'
+sidebar:
+  nav:
+author_profile: false
+comments: true
+lang: [python]
+lib: [ee]
+---
 
 In addition to the web-based IDE Google Earth Engine also provides a Python API that can be used on your local machine without the need to utilize a browser, although the capabilities of this API are reduced compared to the Code Editor/IDE.
 This tutorial will go over how to setup the API on your machine as well as some basic Python scripts utilizing the API. 

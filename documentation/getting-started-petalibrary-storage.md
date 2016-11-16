@@ -1,4 +1,17 @@
-# Getting started with the PetaLibrary
+---
+layout: single
+title: 'Getting started with the PetaLibrary'
+date: 2016-08-01
+authors: [Matt Oakley, Max Joseph]
+category: [tutorials]
+excerpt: 'This tutorial explains how members of Earth Lab can gain access to the PetaLibrary at the University of Colorado Boulder. It also outlines the process for setting up Globus to transfer files between endpoints (e.g., your local machine and the PetaLibrary).'
+sidebar:
+  nav:
+author_profile: false
+comments: true
+lang: 
+lib:
+---
 
 The [PetaLibrary](https://www.rc.colorado.edu/resources/storage/petalibrary) is a Research Computing resource that allows researchers affiliated with the University of Colorado to store large amounts of data.
 This tutorial covers access and use of the PetaLibrary for Earth Lab members.

@@ -1,6 +1,17 @@
-# Introduction to Google Earth Engine's Code Editor
-
-Author: Matt Oakley
+---
+layout: single
+title: 'Introduction to the Google Earth Engine code editor'
+date: 2016-09-01
+authors: [Matt Oakley]
+category: [tutorials]
+excerpt: 'This tutorial introduces the code editor in Google Earth Engine and shows how to use LandSat imagery using the JavaScript API.'
+sidebar:
+  nav:
+author_profile: false
+comments: true
+lang: [javascript]
+lib:
+---
 
 Google Earth Engine is a geospatial processing platform which allows for the visualization and analysis of data on a planetary scale. 
 Since this application is cloud-based, this allows for much faster processing speeds compared to running such an application on your local machine. 
