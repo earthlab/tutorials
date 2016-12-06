@@ -1,6 +1,6 @@
 ---
 layout: single 
-title: "Visualizing hourly traffic crime in Denver, Colorado using R, dplyr, and ggplot"
+title: "Visualizing hourly traffic crime data for Denver, Colorado using R, dplyr, and ggplot"
 date: 2016-12-06 
 authors: [Max Joseph] 
 category: [tutorials] 
@@ -10,6 +10,7 @@ nav:
 author_profile: false 
 comments: true 
 lang: [r]
+lib: [dplyr, ggplot2, lubridate, viridis, RCurl]
 ---
 
 The city of Denver publicly hosts crime data from the past five years in their [open data catalog](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime).
@@ -74,7 +75,7 @@ p <- accidents %>%
            "Hit and run", 
            ifelse(
              offense_type_id == "traffic-accident-dui-duid",
-             "DUI", "Traffic accident"))) %>%
+             "Driving under the influence", "Traffic accident"))) %>%
   ggplot(aes(x = hm, 
              fill = day, 
              color = day)) + 
@@ -82,8 +83,8 @@ p <- accidents %>%
   scale_color_viridis(discrete = TRUE, "", direction = -1) + 
   scale_fill_viridis(discrete = TRUE, "", direction = -1) + 
   xlab("Time of day") + 
-  ylab("Density") + 
-  ggtitle("Hourly traffic crimes in Denver, Colorado") + 
+  ylab("Frequency") + 
+  ggtitle("Traffic crimes in Denver, Colorado") + 
   scale_x_datetime(date_breaks = "4 hours", date_labels = "%H:%M")
 p 
 ```
@@ -91,6 +92,6 @@ p
 This dplyr to ggplot approach is extremely modular. 
 If we wanted to see this plot for each type of traffic accident crime, we could do so simply by adding one statement. 
 
-```{r, fig.width = 10, fig.height = 3.5}
-p + facet_wrap(~ offense_type)
+```{r, fig.width = 7, fig.height = 7}
+p + facet_wrap(~ offense_type, ncol = 1, scales = "free_y")
 ```
