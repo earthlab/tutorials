@@ -8,5 +8,5 @@ Also, feel free to file issues with any of the tutorials if there is something t
 ## Viewing the tutorials
 
 Tutorials are rendered as markdown files and hosted on a website at [earthlab.github.io](http://earthlab.github.io). 
-They can also be accessed via the jupyter nbviewer website here: http://nbviewer.jupyter.org/github/earthlab/tutorials/tree/master/
+The Jupyter notebooks can also be accessed via the Jupyter nbviewer website here: http://nbviewer.jupyter.org/github/earthlab/tutorials/tree/master/
 
