@@ -18,7 +18,7 @@ In this tutorial, we will use R to access and visualize these data, which are es
 
 First, we will load some packages that we'll use later. 
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(lubridate)
