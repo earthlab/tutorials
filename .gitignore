@@ -3,4 +3,5 @@
 *.html
 .Rproj.user
 *.Rproj
+*.Rhistory
 
