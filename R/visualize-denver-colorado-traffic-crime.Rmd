@@ -13,6 +13,7 @@ lang: [r]
 lib: [dplyr, ggplot2, lubridate, viridis, RCurl]
 ---
 
+
 The city of Denver publicly hosts crime data from the past five years in their [open data catalog](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime).
 In this tutorial, we will use R to access and visualize these data, which are essentially spatiotemporally referenced points with features for type of crime, neighborhood, etc. 
 
@@ -59,7 +60,7 @@ We'll also create a new variable `offense_type`, which is a more human-readable 
 Using ggplot, we'll create a density plot with a color for each day of week.
 This workflow uses `dplyr` to munge our data, then pipes the result to `ggplot2`, so that we only create one object in our global environment `p`, which is our plot. 
 
-```{r}
+```{r, fig.cap="Traffic accident data for each hour in Denver, CO"}
 p <- accidents %>%
   group_by(hm, dow, yday, offense_type_id) %>%
   summarize(n = n()) %>%
@@ -92,6 +93,6 @@ p
 This dplyr to ggplot approach is extremely modular. 
 If we wanted to see this plot for each type of traffic accident crime, we could do so simply by adding one statement. 
 
-```{r, fig.width = 7, fig.height = 7}
+```{r, fig.width = 7, fig.height = 7, fig.cap = "Traffic crime data by type"}
 p + facet_wrap(~ offense_type, ncol = 1, scales = "free_y")
 ```
