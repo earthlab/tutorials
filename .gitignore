@@ -1,3 +1,6 @@
 .ipynb_checkpoints
 *.csv
 *.html
+.Rproj.user
+*.Rproj
+
