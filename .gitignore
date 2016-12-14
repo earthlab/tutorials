@@ -4,4 +4,8 @@
 .Rproj.user
 *.Rproj
 *.Rhistory
-
+*.zip
+*.tif
+*.shp
+*.txt
+*wrs2_asc_desc*
