@@ -19,7 +19,7 @@ In this tutorial, we will use R to access and visualize these data, which are es
 
 First, we will load some packages that we'll use later. 
 
-```{r, message=FALSE, warning=FALSE}
+```{r setup, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(lubridate)
@@ -29,7 +29,7 @@ library(RCurl)
 
 Then, we need to download a comma separated values file that contains the raw data.
 
-```{r}
+```{r download-data}
 data_url <- "http://data.denvergov.org/download/gis/crime/csv/crime.csv"
 data <- getURL(data_url, ssl.verifypeer = 0L, followlocation = 1L)
 d <- read.csv(text = data)
@@ -37,14 +37,14 @@ d <- read.csv(text = data)
 
 Let's lowercase the column names, and look at the structure of the data with the `str()` function. 
 
-```{r}
+```{r explore-data}
 names(d) <- tolower(names(d))
 str(d)
 ```
 
 The code below uses the `dplyr` package to subset the data to only include traffic accident crimes (`filter(...)`), and parses the date/time column so that we can extract quantities like hour-minutes (to evaluate patterns over the course of one day), the day of week (e.g., 1 = Sunday, 2 = Monday, ...), and year day (what day of the year is it?), creating new columns for these variables with the `mutate()` function.
 
-```{r}
+```{r munge-data}
 accidents <- d %>%
   filter(offense_category_id == "traffic-accident") %>%
   mutate(datetime = ymd_hms(first_occurrence_date, tz = "MST"),
@@ -60,7 +60,7 @@ We'll also create a new variable `offense_type`, which is a more human-readable 
 Using ggplot, we'll create a density plot with a color for each day of week.
 This workflow uses `dplyr` to munge our data, then pipes the result to `ggplot2`, so that we only create one object in our global environment `p`, which is our plot. 
 
-```{r, fig.cap="Traffic accident data for each hour in Denver, CO"}
+```{r plot-hourly, fig.cap="Traffic accident data for each hour in Denver, CO"}
 p <- accidents %>%
   group_by(hm, dow, yday, offense_type_id) %>%
   summarize(n = n()) %>%
@@ -93,6 +93,6 @@ p
 This dplyr to ggplot approach is extremely modular. 
 If we wanted to see this plot for each type of traffic accident crime, we could do so simply by adding one statement. 
 
-```{r, fig.width = 7, fig.height = 7, fig.cap = "Traffic crime data by type"}
+```{r facet-by-group, fig.width = 7, fig.height = 7, fig.cap = "Traffic crime data by type"}
 p + facet_wrap(~ offense_type, ncol = 1, scales = "free_y")
 ```
