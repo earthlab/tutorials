@@ -1,0 +1,59 @@
+name: eds-lessons
+channels:
+  - conda-forge
+dependencies:
+  - papermill
+  #- tornado<6
+
+  # Core scientific python
+  - numpy
+  - matplotlib
+  - python=3.6
+  - pyqt
+  - seaborn
+
+  # extentions
+  - autopep8
+
+  # Geo stuff
+  - basemap
+  - rasterstats
+  - geopy
+  - cartopy
+  - geopandas
+  - rasterio
+  - contextily
+  - pysal
+  - pyproj
+  - folium
+  - scikit-image
+  - shapely
+  - gdal
+  - libgdal
+  - geocoder
+  - geojson
+
+  # natural language processing
+  - tweepy
+  - nltk
+
+  # Jupyter Environment
+  - notebook
+  - ipython
+
+  - pip:
+      # Utilities
+      - cenpy
+      - climata
+      - download
+      - elevation
+      - nbgrader
+      - nbclean
+      - richdem
+      - tqdm
+      - kiwisolver
+      # more ea stuff
+      - mapboxgl
+      - sklearn
+      - hydrofunctions
+      - earthpy
